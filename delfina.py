@@ -15,7 +15,7 @@ CORS(app)
 # Configura la URI de la base de datos con el driver de MySQL, usuario, contraseña y nombre de la base de datos
 # URI de la BD == Driver de la BD://user:password@UrlBD/nombreBD
 #app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:root@localhost/productos"
-app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://despelett:Candela11-@despelett.mysql.pythonanywhere-services.com/despelett$default"
+#app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://despelett:Candela11-@despelett.mysql.pythonanywhere-services.com/despelett$default"
 
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False 
 db = SQLAlchemy(app) # Crea una instancia de la clase SQLAlchemy y la asigna al objeto db para interactuar con la base de datos
