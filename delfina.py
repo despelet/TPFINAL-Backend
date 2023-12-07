@@ -1,15 +1,3 @@
-'''''
-Este código importa diferentes módulos y clases necesarios para el desarrollo de una aplicación Flask.
-
-Flask: Es la clase principal de Flask, que se utiliza para crear instancias de la aplicación Flask.
-jsonify: Es una función que convierte los datos en formato JSON para ser enviados como respuesta desde la API.
-request: Es un objeto que representa la solicitud HTTP realizada por el cliente.
-CORS: Es una extensión de Flask que permite el acceso cruzado entre dominios (Cross-Origin Resource Sharing), lo cual es útil cuando se desarrollan aplicaciones web con frontend y backend separados.
-SQLAlchemy: Es una biblioteca de Python que proporciona una abstracción de alto nivel para interactuar con bases de datos relacionales.
-Marshmallow: Es una biblioteca de serialización/deserialización de objetos Python a/desde formatos como JSON.
-Al importar estos módulos y clases, estamos preparando nuestro entorno de desarrollo para utilizar las funcionalidades que ofrecen.
-
-'''
 # Importa las clases Flask, jsonify y request del módulo flask
 from flask import Flask, jsonify, request
 # Importa la clase CORS del módulo flask_cors
@@ -27,21 +15,14 @@ CORS(app)
 # Configura la URI de la base de datos con el driver de MySQL, usuario, contraseña y nombre de la base de datos
 # URI de la BD == Driver de la BD://user:password@UrlBD/nombreBD
 #app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:root@localhost/productos"
-#app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://despelett:Candela11-@despelett.mysql.pythonanywhere-services.com/despelett$default"
-# Configura el seguimiento de modificaciones de SQLAlchemy a False para mejorar el rendimiento
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-# Crea una instancia de la clase SQLAlchemy y la asigna al objeto db para interactuar con la base de datos
-db = SQLAlchemy(app)
-# Crea una instancia de la clase Marshmallow y la asigna al objeto ma para trabajar con serialización y deserialización de datos
-ma = Marshmallow(app)
+app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://despelett:Candela11-@despelett.mysql.pythonanywhere-services.com/despelett$default"
+
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False 
+db = SQLAlchemy(app) # Crea una instancia de la clase SQLAlchemy y la asigna al objeto db para interactuar con la base de datos
+ma = Marshmallow(app) # Crea una instancia de la clase Marshmallow y la asigna al objeto ma para trabajar con serialización y deserialización de datos
 
 # ------ definicion de modelos de base de datos
 class Producto(db.Model):  # Producto hereda de db.Model
-    """
-    Definición de la tabla Producto en la base de datos.
-    La clase Producto hereda de db.Model.
-    Esta clase representa la tabla "Producto" en la base de datos.
-    """
     id = db.Column(db.Integer, primary_key=True)
     tipo_producto = db.Column(db.String(30))    # tipo de producto (termotanques/paneles/controladores_modulares/baterias_de_gel/generadores_eolicos)
     modelo = db.Column(db.String(50))           # nombre del modelo
